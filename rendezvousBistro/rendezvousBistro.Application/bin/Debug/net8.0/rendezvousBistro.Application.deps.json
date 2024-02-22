@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "rendezvousBistro.Application/1.0.0": {
+        "dependencies": {
+          "rendezvousBistro.Domain": "1.0.0"
+        },
+        "runtime": {
+          "rendezvousBistro.Application.dll": {}
+        }
+      },
+      "rendezvousBistro.Domain/1.0.0": {
+        "runtime": {
+          "rendezvousBistro.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "rendezvousBistro.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "rendezvousBistro.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

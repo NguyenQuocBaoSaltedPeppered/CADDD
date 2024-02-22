@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "3y9W3mIRgJXdt8+vQn0UQrVC5cHgfJC+g0sFeismbKc=",
+  "Source": "rendezvousBistro.Api",
+  "BasePath": "_content/rendezvousBistro.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
