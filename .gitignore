@@ -1,0 +1,31 @@
+# Ignore các file build và binary
+bin/
+obj/
+
+# Ignore các file cấu hình cụ thể cho Visual Studio
+.vs/
+*.vscode/
+
+# Ignore các file tự sinh ra
+*.user
+*.suo
+*.cache
+*.pdb
+
+# Ignore các file cụ thể cho các project C#
+**/bin/
+**/obj/
+
+# Ignore các file tạm thời
+[Tt]emp/
+[Vv]iews/
+[Ii]mpr/
+
+# Ignore các file logs và tạm thời
+*.log
+*.log.*
+*.tmp
+
+# Ignore file .sln.cache và .vscode
+*.sln.cache
+.vscode/
