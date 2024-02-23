@@ -1,0 +1,12 @@
+D:\locodedi\CADDD\rendezvousBistro\rendezvousBistro.Contracts\bin\Debug\net8.0\rendezvousBistro.Contracts.deps.json
+D:\locodedi\CADDD\rendezvousBistro\rendezvousBistro.Contracts\bin\Debug\net8.0\rendezvousBistro.Contracts.dll
+D:\locodedi\CADDD\rendezvousBistro\rendezvousBistro.Contracts\bin\Debug\net8.0\rendezvousBistro.Contracts.pdb
+D:\locodedi\CADDD\rendezvousBistro\rendezvousBistro.Contracts\obj\Debug\net8.0\rendezvousBistro.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\locodedi\CADDD\rendezvousBistro\rendezvousBistro.Contracts\obj\Debug\net8.0\rendezvousBistro.Contracts.AssemblyInfoInputs.cache
+D:\locodedi\CADDD\rendezvousBistro\rendezvousBistro.Contracts\obj\Debug\net8.0\rendezvousBistro.Contracts.AssemblyInfo.cs
+D:\locodedi\CADDD\rendezvousBistro\rendezvousBistro.Contracts\obj\Debug\net8.0\rendezvousBistro.Contracts.csproj.CoreCompileInputs.cache
+D:\locodedi\CADDD\rendezvousBistro\rendezvousBistro.Contracts\obj\Debug\net8.0\rendezvousBistro.Contracts.sourcelink.json
+D:\locodedi\CADDD\rendezvousBistro\rendezvousBistro.Contracts\obj\Debug\net8.0\rendezvousBistro.Contracts.dll
+D:\locodedi\CADDD\rendezvousBistro\rendezvousBistro.Contracts\obj\Debug\net8.0\refint\rendezvousBistro.Contracts.dll
+D:\locodedi\CADDD\rendezvousBistro\rendezvousBistro.Contracts\obj\Debug\net8.0\rendezvousBistro.Contracts.pdb
+D:\locodedi\CADDD\rendezvousBistro\rendezvousBistro.Contracts\obj\Debug\net8.0\ref\rendezvousBistro.Contracts.dll

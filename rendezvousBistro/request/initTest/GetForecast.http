@@ -1,0 +1,4 @@
+GET http://localhost:5056/WeatherForecast
+
+###
+GET https://localhost:7135/WeatherForecast
