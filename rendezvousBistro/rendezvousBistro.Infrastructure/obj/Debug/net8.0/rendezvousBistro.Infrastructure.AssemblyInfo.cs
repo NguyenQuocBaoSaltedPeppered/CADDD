@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("rendezvousBistro.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59bae72c7750477580e4a8bc93dc3b576f2c4f7f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef65d457ca36e61507c14e43d63fb60b94dc160d")]
 [assembly: System.Reflection.AssemblyProductAttribute("rendezvousBistro.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("rendezvousBistro.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
