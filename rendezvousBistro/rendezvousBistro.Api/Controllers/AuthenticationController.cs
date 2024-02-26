@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using rendezvousBistro.Application.Services.Authentication;
 using rendezvousBistro.Contracts.Authentication;
 
-namespace rendezvousBistro.Api.Authentication;
+namespace rendezvousBistro.Api.Controllers;
 
 [ApiController]
 [Route("auth")]
