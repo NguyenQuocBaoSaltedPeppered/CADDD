@@ -1,3 +1,5 @@
+using FluentResults;
+using rendezvousBistro.Application.Common.Errors;
 using rendezvousBistro.Application.Common.Interfaces.Authentication;
 using rendezvousBistro.Application.Common.Interfaces.Persistence;
 using rendezvousBistro.Domain.Entities;
@@ -34,12 +36,12 @@ public class AuthenticationService(
         );
     }
 
-    public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+    public Result<AuthenticationResult> Register(string firstName, string lastName, string email, string password)
     {
         // 1. Validate the user doesn't exist
         if(_userRepository.GetUserByEmail(email) is not null)
         {
-            throw new Exception("User already exist");
+            return Result.Fail<AuthenticationResult>(new[] {new DuplicateEmailError()});
         }
 
         // 2. Create user (generate unique Id) & Persist to DB
