@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 
-namespace rendezvousBistro.Api.Errors
+namespace rendezvousBistro.Api.Common.Errors
 {
     public class RendezvousBistroProblemDetailFactory(
         IOptions<ApiBehaviorOptions> options,

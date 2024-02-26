@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using rendezvousBistro.Api.Errors;
-using rendezvousBistro.Api.Middleware;
+using rendezvousBistro.Api.Common.Errors;
 using rendezvousBistro.Application;
-using rendezvousBistro.Application.Filters;
 using rendezvousBistro.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,9 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
         .AddApplication()
         .AddInfrastructure(builder.Configuration);
     builder.Services.AddControllers();
-    // builder.Services.AddControllers(
-    //     options => options.Filters.Add<ErrorHandlingFilterAttribute>()
-    // );
 
     // Add custom problem details factory
     builder.Services.AddSingleton<ProblemDetailsFactory, RendezvousBistroProblemDetailFactory>();
@@ -33,7 +28,6 @@ if (app.Environment.IsDevelopment())
 }
 
 {
-    // app.UseMiddleware<ErrorHandlingMiddleware>();
     app.UseExceptionHandler("/error");
     app.UseHttpsRedirection();
     app.MapControllers();
