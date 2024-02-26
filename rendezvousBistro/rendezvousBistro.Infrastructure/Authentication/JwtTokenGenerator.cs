@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using rendezvousBistro.Application.Common.Interfaces.Authentication;
 using rendezvousBistro.Application.Common.Interfaces.Services;
+using rendezvousBistro.Domain.Entities;
 
 namespace rendezvousBistro.Infrastructure.Authentication;
 
@@ -16,7 +17,7 @@ public class JwtTokenGenerator(
     private readonly JwtSettings _jwtSettings = jwtOptions.Value;
     public IDateTimeProvider _dateTimeProvider = dateTimeProvider;
 
-    public string GenerateToken(Guid userId, string firstName, string lastName)
+    public string GenerateToken(User user)
     {
         var signingCredentials = new SigningCredentials(
             new SymmetricSecurityKey(
@@ -27,9 +28,9 @@ public class JwtTokenGenerator(
 
         var claims = new []
         {
-            new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
-            new Claim(JwtRegisteredClaimNames.GivenName, firstName),
-            new Claim(JwtRegisteredClaimNames.FamilyName, lastName),
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new Claim(JwtRegisteredClaimNames.GivenName, user.FirstName),
+            new Claim(JwtRegisteredClaimNames.FamilyName, user.LastName),
             new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
         };
 
