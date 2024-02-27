@@ -10,14 +10,10 @@ namespace rendezvousBistro.Api.Controllers;
 
 [Route("auth")]
 public class AuthenticationController(
-    IMediator mediator
-    // IAuthenticationCommandService authenticationCommandService,
-    // IAuthenticationQueryService authenticationQueryService
+    ISender mediator
 ) : ApiController
 {
-    private readonly IMediator _mediator = mediator;
-    // private readonly IAuthenticationCommandService _authenticationCommandService = authenticationCommandService;
-    // private readonly IAuthenticationQueryService _authenticationQueryService = authenticationQueryService;
+    private readonly ISender _mediator = mediator;
 
     private static AuthenticationResponse MapAuthResult(AuthenticationResult result) =>
         new(
