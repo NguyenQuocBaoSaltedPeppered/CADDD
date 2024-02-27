@@ -1,5 +1,5 @@
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
-using rendezvousBistro.Application.Services.Authentication;
 
 namespace rendezvousBistro.Application;
 
@@ -11,7 +11,9 @@ public static class DependencyInjection
     // 1 method để có thể truy cập được các dịch vụ được cung cấp tại phía Application.
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        services.AddScoped<IAuthenticationService, AuthenticationService>();
+        // services.AddScoped<IAuthenticationCommandService, AuthenticationCommandService>();
+        // services.AddScoped<IAuthenticationQueryService, AuthenticationQueryService>();
+        services.AddMediatR(config => config.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
 
         return services;
     }
