@@ -1,8 +1,10 @@
 using System.Diagnostics;
+using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
+using rendezvousBistro.Api.Common.Http;
 
 namespace rendezvousBistro.Api.Common.Errors
 {
@@ -85,8 +87,13 @@ namespace rendezvousBistro.Api.Common.Errors
             {
                 problemDetails.Extensions["traceId"] = traceId;
             }
-            // Customizing the problem details is the last thing we do, so that the developer can overwrite the defaults.
-            // problemDetails.Extensions.Add("customProperty", "custom value");
+            // Customizing the problem details is the last thing we do,
+            // so that the developer can overwrite the defaults.
+            var errors = httpContext?.Items["Errors"] as List<Error>;
+            if (errors is not null)
+            {
+                problemDetails.Extensions.Add(HttpContextItemKeys.Errors, errors.Select(e => e.Code));
+            }
 
             _configure?.Invoke(new() { HttpContext = httpContext!, ProblemDetails = problemDetails });
         }
