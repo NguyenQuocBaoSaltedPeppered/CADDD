@@ -1,16 +1,23 @@
 using ErrorOr;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using rendezvousBistro.Application.Services.Authentication;
+using rendezvousBistro.Application.Authentication.Commands.Register;
+using rendezvousBistro.Application.Authentication.Common;
+using rendezvousBistro.Application.Authentication.Queries.Login;
 using rendezvousBistro.Contracts.Authentication;
 
 namespace rendezvousBistro.Api.Controllers;
 
 [Route("auth")]
 public class AuthenticationController(
-    IAuthenticationService authenticationService
+    IMediator mediator
+    // IAuthenticationCommandService authenticationCommandService,
+    // IAuthenticationQueryService authenticationQueryService
 ) : ApiController
 {
-    private readonly IAuthenticationService _authenticationService = authenticationService;
+    private readonly IMediator _mediator = mediator;
+    // private readonly IAuthenticationCommandService _authenticationCommandService = authenticationCommandService;
+    // private readonly IAuthenticationQueryService _authenticationQueryService = authenticationQueryService;
 
     private static AuthenticationResponse MapAuthResult(AuthenticationResult result) =>
         new(
@@ -22,14 +29,15 @@ public class AuthenticationController(
         );
 
     [HttpPost("register")]
-    public IActionResult Register(RegisterRequest request)
+    public async Task<IActionResult> Register(RegisterRequest request)
     {
-        ErrorOr<AuthenticationResult> registerResult = _authenticationService.Register(
+        var command = new RegisterCommand(
             request.FirstName,
             request.LastName,
             request.Email,
             request.Password
         );
+        ErrorOr<AuthenticationResult> registerResult = await _mediator.Send(command);
         // ErrorOr.MatchFirst is a method that takes two functions as arguments.
         // The first function is called if the ErrorOr is a Result with a value,
         // and the second function is called if the ErrorOr is `an Error`.
@@ -59,13 +67,14 @@ public class AuthenticationController(
     }
 
     [HttpPost("login")]
-    public IActionResult Login(LoginRequest request)
+    public async Task<IActionResult> Login(LoginRequest request)
     {
-        ErrorOr<AuthenticationResult> authResult = _authenticationService.Login(
+        var query = new LoginQuery(
             request.Email,
             request.Password
         );
-        return authResult.Match(
+        ErrorOr<AuthenticationResult> loginResult = await _mediator.Send(query);
+        return loginResult.Match(
             authResult => Ok(MapAuthResult(authResult)),
             Problem
         );
