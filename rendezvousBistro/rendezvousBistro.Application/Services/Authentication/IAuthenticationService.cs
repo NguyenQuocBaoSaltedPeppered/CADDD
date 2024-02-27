@@ -1,16 +1,16 @@
-using FluentResults;
+using ErrorOr;
 
 namespace rendezvousBistro.Application.Services.Authentication;
 
 public interface IAuthenticationService
 {
-    Result<AuthenticationResult> Register(
+    ErrorOr<AuthenticationResult> Register(
         string firstName,
         string lastName,
         string email,
         string password
     );
-    AuthenticationResult Login(
+    ErrorOr<AuthenticationResult> Login(
         string email,
         string password
     );
