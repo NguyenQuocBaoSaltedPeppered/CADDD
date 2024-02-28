@@ -1,4 +1,5 @@
 using ErrorOr;
+using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using rendezvousBistro.Application.Authentication.Commands.Register;
@@ -10,29 +11,24 @@ namespace rendezvousBistro.Api.Controllers;
 
 [Route("auth")]
 public class AuthenticationController(
-    ISender mediator
+    ISender mediator,
+    IMapper mapper
 ) : ApiController
 {
     private readonly ISender _mediator = mediator;
-
-    private static AuthenticationResponse MapAuthResult(AuthenticationResult result) =>
-        new(
-            result.User.Id,
-            result.User.FirstName,
-            result.User.LastName,
-            result.User.Email,
-            result.Token
-        );
+    private readonly IMapper _mapper = mapper;
 
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
-        var command = new RegisterCommand(
-            request.FirstName,
-            request.LastName,
-            request.Email,
-            request.Password
-        );
+        // var command = new RegisterCommand(
+        //     request.FirstName,
+        //     request.LastName,
+        //     request.Email,
+        //     request.Password
+        // );
+        // Map item with mapster
+        var command = _mapper.Map<RegisterCommand>(request);
         ErrorOr<AuthenticationResult> registerResult = await _mediator.Send(command);
         // ErrorOr.MatchFirst is a method that takes two functions as arguments.
         // The first function is called if the ErrorOr is a Result with a value,
@@ -57,7 +53,7 @@ public class AuthenticationController(
         // ---
         // Match using with custom Problem from ApiController
         return registerResult.Match(
-            authResult => Ok(MapAuthResult(authResult)),
+            authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)),
             Problem
         );
     }
@@ -65,13 +61,10 @@ public class AuthenticationController(
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequest request)
     {
-        var query = new LoginQuery(
-            request.Email,
-            request.Password
-        );
+        var query = _mapper.Map<LoginQuery>(request);
         ErrorOr<AuthenticationResult> loginResult = await _mediator.Send(query);
         return loginResult.Match(
-            authResult => Ok(MapAuthResult(authResult)),
+            authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)),
             Problem
         );
     }
