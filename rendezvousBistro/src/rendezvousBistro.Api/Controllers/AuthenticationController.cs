@@ -21,12 +21,6 @@ public class AuthenticationController(
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
-        // var command = new RegisterCommand(
-        //     request.FirstName,
-        //     request.LastName,
-        //     request.Email,
-        //     request.Password
-        // );
         // Map item with mapster
         var command = _mapper.Map<RegisterCommand>(request);
         ErrorOr<AuthenticationResult> registerResult = await _mediator.Send(command);
