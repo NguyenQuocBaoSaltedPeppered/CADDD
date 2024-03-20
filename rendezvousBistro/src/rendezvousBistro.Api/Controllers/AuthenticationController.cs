@@ -1,6 +1,7 @@
 using ErrorOr;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using rendezvousBistro.Application.Authentication.Commands.Register;
 using rendezvousBistro.Application.Authentication.Common;
@@ -10,6 +11,7 @@ using rendezvousBistro.Contracts.Authentication;
 namespace rendezvousBistro.Api.Controllers;
 
 [Route("auth")]
+[AllowAnonymous]
 public class AuthenticationController(
     ISender mediator,
     IMapper mapper
