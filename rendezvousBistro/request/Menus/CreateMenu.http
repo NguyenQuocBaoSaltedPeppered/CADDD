@@ -1,0 +1,42 @@
+@host = http://localhost:5056
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyODFiZGIyOC01YzM5LTQ4ZGEtOTE1Yi0xOTJhYmU2NmU5NzIiLCJnaXZlbl9uYW1lIjoiQmFvIiwiZmFtaWx5X25hbWUiOiJOUSIsImp0aSI6ImQ1Y2EwNjYyLTVjMDAtNDNmZi1iZWJlLTA0NmIzNjMxOTJmYiIsImV4cCI6MTcxMTA5OTQ2MCwiaXNzIjoiQmFvIE5RIiwiYXVkIjoiTG9raSBMQVVGRVlTT04ifQ.Rh18daSUbLHrsr4MCqlAVgQBSMyH0YL6-il5Un5uT6w
+@hostId = 281bdb28-5c39-48da-915b-192abe66e972
+
+POST {{host}}/hosts/{{hostId}}/menus
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Meal 1",
+    "description": "Meal 1 description",
+    "sections": [
+        {
+            "name": "Section 1",
+            "description": "Section 1 description",
+            "items": [
+                {
+                    "name": "Item 1.1",
+                    "description": "Item 1.1 description"
+                },
+                {
+                    "name": "Item 1.2",
+                    "description": "Item 1.2 description"
+                }
+            ]
+        },
+        {
+            "name": "Section 2",
+            "description": "Section 2 description",
+            "items": [
+                {
+                    "name": "Item 2.1",
+                    "description": "Item 2.1 description"
+                },
+                {
+                    "name": "Item 2.2",
+                    "description": "Item 2.2 description"
+                }
+            ]
+        }
+    ]
+}
