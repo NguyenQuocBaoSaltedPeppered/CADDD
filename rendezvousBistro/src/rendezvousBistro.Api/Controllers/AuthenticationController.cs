@@ -10,6 +10,9 @@ using rendezvousBistro.Contracts.Authentication;
 
 namespace rendezvousBistro.Api.Controllers;
 
+/// <summary>
+/// Authentication controller
+/// </summary>
 [Route("auth")]
 [AllowAnonymous]
 public class AuthenticationController(
@@ -20,45 +23,47 @@ public class AuthenticationController(
     private readonly ISender _mediator = mediator;
     private readonly IMapper _mapper = mapper;
 
+    /// <summary>
+    /// Register a new user
+    /// </summary>
+    /// <param name="request">Register request</param>
+    /// <remarks>
+    /// 
+    ///     POST /auth/register
+    /// 
+    /// </remarks>
+    /// <response code = "200">New user information</response>
+    /// <response code = "500">Internal server error</response>
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
         // Map item with mapster
         var command = _mapper.Map<RegisterCommand>(request);
         ErrorOr<AuthenticationResult> registerResult = await _mediator.Send(command);
-        // ErrorOr.MatchFirst is a method that takes two functions as arguments.
-        // The first function is called if the ErrorOr is a Result with a value,
-        // and the second function is called if the ErrorOr is `an Error`.
-        //
-        // return registerResult.MatchFirst(
-        //     authResult => Ok(MapAuthResult(authResult)),
-        //     firstError => Problem(
-        //         statusCode: StatusCodes.Status409Conflict,
-        //         title: firstError.Description
-        //     )
-        // );
-        // ---
-        // ErrorOr.Match is a method that takes two functions as arguments.
-        // The first function is called if the ErrorOr is a Result with a value,
-        // and the second function is called if the ErrorOr is `Errors`.
-        //
-        // return registerResult.Match(
-        //     authResult => Ok(MapAuthResult(authResult)),
-        //     _ => Problem(statusCode: StatusCodes.Status409Conflict, detail: "Email already exists")
-        // );
-        // ---
-        // Match using with custom Problem from ApiController
+
         return registerResult.Match(
             authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)),
             Problem
         );
     }
 
+    /// <summary>
+    /// Login for a user
+    /// </summary>
+    /// <param name="request">Login request</param>
+    /// <remarks>
+    /// 
+    ///     POST /auth/login
+    /// 
+    /// </remarks>
+    /// <response code = "200">New user information</response>
+    /// <response code = "500">Internal server error</response>
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequest request)
     {
         var query = _mapper.Map<LoginQuery>(request);
         ErrorOr<AuthenticationResult> loginResult = await _mediator.Send(query);
+
         return loginResult.Match(
             authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)),
             Problem

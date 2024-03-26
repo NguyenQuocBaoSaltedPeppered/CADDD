@@ -1,13 +1,20 @@
 using System.Net;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace rendezvousBistro.Api.Middleware;
 
+/// <summary>
+/// Error handling middleware
+/// </summary>
 public class ErrorHandlingMiddleware(RequestDelegate next)
 {
     private readonly RequestDelegate _next = next;
 
+    /// <summary>
+    /// Invoke middleware
+    /// </summary>
+    /// <param name="context"></param>
+    /// <returns></returns>
     public async Task Invoke(HttpContext context)
     {
         try
@@ -20,6 +27,12 @@ public class ErrorHandlingMiddleware(RequestDelegate next)
         }
     }
 
+    /// <summary>
+    /// Handle exception
+    /// </summary>
+    /// <param name="context"></param>
+    /// <param name="ex"></param>
+    /// <returns></returns>
     private static Task HandleExceptionAsync(HttpContext context, Exception ex)
     {
         var statusCode = HttpStatusCode.InternalServerError;

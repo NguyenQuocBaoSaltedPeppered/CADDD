@@ -9,8 +9,15 @@ using MenuItem = rendezvousBistro.Domain.MenuAggregate.Entities.MenuItem;
 
 namespace rendezvousBistro.Api.Common.Mapping;
 
+/// <summary>
+/// Menu mapping configuration
+/// </summary>
 public class MenuMappingConfig : IRegister
 {
+    /// <summary>
+    /// Register menu mapping profiles
+    /// </summary>
+    /// <param name="config"></param>
     public void Register(TypeAdapterConfig config)
     {
         config.NewConfig<(CreateMenuRequest Request, Guid HostId), CreateMenuCommand>()

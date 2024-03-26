@@ -8,6 +8,10 @@ using rendezvousBistro.Api.Common.Http;
 
 namespace rendezvousBistro.Api.Common.Errors
 {
+    /// <summary>
+    /// Problem detail factory for the system
+    /// </summary>
+    /// <typeparam name="ApiBehaviorOptions"></typeparam>
     public class RendezvousBistroProblemDetailFactory(
         IOptions<ApiBehaviorOptions> options,
         IOptions<ProblemDetailsOptions>? problemDetailsOptions = null
@@ -15,7 +19,19 @@ namespace rendezvousBistro.Api.Common.Errors
     {
         private readonly ApiBehaviorOptions _options = options?
             .Value ?? throw new ArgumentNullException(nameof(options));
+
         private readonly Action<ProblemDetailsContext>? _configure = problemDetailsOptions?.Value?.CustomizeProblemDetails;
+
+        /// <summary>
+        /// Create problem details
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <param name="statusCode"></param>
+        /// <param name="title"></param>
+        /// <param name="type"></param>
+        /// <param name="detail"></param>
+        /// <param name="instance"></param>
+        /// <returns></returns>
         public override ProblemDetails CreateProblemDetails(
             HttpContext httpContext,
             int? statusCode = null,
@@ -40,6 +56,17 @@ namespace rendezvousBistro.Api.Common.Errors
             return problemDetails;
         }
 
+        /// <summary>
+        /// Create validation problem details
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <param name="modelStateDictionary"></param>
+        /// <param name="statusCode"></param>
+        /// <param name="title"></param>
+        /// <param name="type"></param>
+        /// <param name="detail"></param>
+        /// <param name="instance"></param>
+        /// <returns></returns>
         public override ValidationProblemDetails CreateValidationProblemDetails(
             HttpContext httpContext,
             ModelStateDictionary modelStateDictionary,
@@ -72,6 +99,12 @@ namespace rendezvousBistro.Api.Common.Errors
             return problemDetails;
         }
 
+        /// <summary>
+        /// Apply problem details defaults
+        /// </summary>
+        /// <param name="httpContext"></param>
+        /// <param name="problemDetails"></param>
+        /// <param name="statusCode"></param>
         private void ApplyProblemDetailsDefaults(HttpContext httpContext, ProblemDetails problemDetails, int statusCode)
         {
             problemDetails.Status ??= statusCode;

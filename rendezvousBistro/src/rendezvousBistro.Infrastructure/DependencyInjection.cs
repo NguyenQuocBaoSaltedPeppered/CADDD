@@ -13,8 +13,17 @@ using rendezvousBistro.Infrastructure.Services;
 
 namespace rendezvousBistro.Infrastructure;
 
+/// <summary>
+/// Dependency injection for infrastructure layer
+/// </summary>
 public static class DependencyInjection
 {
+    /// <summary>
+    /// Register infrastructure layer dependencies
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="configuration"></param>
+    /// <returns></returns>
     public static IServiceCollection AddInfrastructure(
         this IServiceCollection services,
         ConfigurationManager configuration
@@ -27,6 +36,11 @@ public static class DependencyInjection
         return services;
     }
 
+    /// <summary>
+    /// Register repositories
+    /// </summary>
+    /// <param name="services"></param>
+    /// <returns></returns>
     public static IServiceCollection AddPersistence(
         this IServiceCollection services
     )
@@ -35,6 +49,13 @@ public static class DependencyInjection
         services.AddScoped<IMenuRepository, MenuRepository>();
         return services;
     }
+
+    /// <summary>
+    /// Register authentication
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="configuration"></param>
+    /// <returns></returns>
     public static IServiceCollection AddAuth(
         this IServiceCollection services,
         ConfigurationManager configuration)

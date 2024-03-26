@@ -3,6 +3,7 @@ using rendezvousBistro.Domain.MenuAggregate;
 
 namespace rendezvousBistro.Infrastructure.Persistence;
 
+/// <inheritdoc cref="IMenuRepository"/>
 public class MenuRepository : IMenuRepository
 {
     private static readonly List<Menu> _menus = [];

@@ -4,6 +4,11 @@ using MediatR;
 
 namespace rendezvousBistro.Application.Common.Behaviors;
 
+/// <summary>
+/// Validation behavior configuration
+/// </summary>
+/// <typeparam name="TRequest"></typeparam>
+/// <typeparam name="TResponse"></typeparam>
 public class ValidationBehavior<TRequest, TResponse>(
     IValidator<TRequest>? validator = null
 ) : IPipelineBehavior<TRequest, TResponse>
@@ -11,6 +16,14 @@ public class ValidationBehavior<TRequest, TResponse>(
     where TResponse : IErrorOr
 {
     private readonly IValidator<TRequest>? _validator = validator;
+
+    /// <summary>
+    /// Handle the request behavior
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="next"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     public async Task<TResponse> Handle(
         TRequest request,
         RequestHandlerDelegate<TResponse> next,

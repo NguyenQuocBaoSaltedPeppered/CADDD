@@ -8,6 +8,9 @@ using rendezvousBistro.Domain.Entities;
 
 namespace rendezvousBistro.Application.Authentication.Queries.Login;
 
+/// <summary>
+/// Login query handler
+/// </summary>
 public class LoginQueryHandler(
     IJwtTokenGenerator jwtTokenGenerator,
     IUserRepository userRepository
@@ -17,6 +20,12 @@ public class LoginQueryHandler(
     private readonly IJwtTokenGenerator _jwtTokenGenerator = jwtTokenGenerator;
     private readonly IUserRepository _userRepository = userRepository;
 
+    /// <summary>
+    /// Handle login query
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     public async Task<ErrorOr<AuthenticationResult>> Handle(LoginQuery query, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;

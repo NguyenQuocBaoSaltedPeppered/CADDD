@@ -8,6 +8,9 @@ using rendezvousBistro.Domain.Entities;
 
 namespace rendezvousBistro.Application.Authentication.Commands.Register;
 
+/// <summary>
+/// Register command handler
+/// </summary>
 public class RegisterCommandHandler(
     IJwtTokenGenerator jwtTokenGenerator,
     IUserRepository userRepository
@@ -17,6 +20,12 @@ public class RegisterCommandHandler(
     private readonly IJwtTokenGenerator _jwtTokenGenerator = jwtTokenGenerator;
     private readonly IUserRepository _userRepository = userRepository;
 
+    /// <summary>
+    /// Handle register command
+    /// </summary>
+    /// <param name="command"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;

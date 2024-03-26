@@ -15,7 +15,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint($"../swagger/rendezvous-bistro/swagger.json", "Rendezvous Bistro");
+        options.RoutePrefix = string.Empty;
+    });
 }
 
 {

@@ -6,8 +6,17 @@ using rendezvousBistro.Contracts.Authentication;
 
 namespace rendezvousBistro.Api.Common.Mapping;
 
+/// <summary>
+/// Authentication mapping configuration
+/// </summary> <summary>
+/// 
+/// </summary>
 public class AuthenticationMappingConfig : IRegister
 {
+    /// <summary>
+    /// Register authentication mapping profiles
+    /// </summary>
+    /// <param name="config"></param>
     public void Register(TypeAdapterConfig config)
     {
         config.NewConfig<RegisterRequest, RegisterCommand>();

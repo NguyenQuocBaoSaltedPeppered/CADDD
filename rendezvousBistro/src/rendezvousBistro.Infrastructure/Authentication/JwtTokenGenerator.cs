@@ -9,6 +9,7 @@ using rendezvousBistro.Domain.Entities;
 
 namespace rendezvousBistro.Infrastructure.Authentication;
 
+/// <inheritdoc cref="IJwtTokenGenerator"/>
 public class JwtTokenGenerator(
     IDateTimeProvider dateTimeProvider,
     IOptions<JwtSettings> jwtOptions

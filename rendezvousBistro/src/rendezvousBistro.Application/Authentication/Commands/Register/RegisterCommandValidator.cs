@@ -2,8 +2,14 @@ using FluentValidation;
 
 namespace rendezvousBistro.Application.Authentication.Commands.Register;
 
+/// <summary>
+/// Register command validator
+/// </summary>
 public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
 {
+    /// <summary>
+    /// Rule of register command validator
+    /// </summary>
     public RegisterCommandValidator()
     {
         RuleFor(v => v.FirstName)

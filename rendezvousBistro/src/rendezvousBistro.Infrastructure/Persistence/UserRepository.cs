@@ -3,6 +3,7 @@ using rendezvousBistro.Domain.Entities;
 
 namespace rendezvousBistro.Infrastructure.Persistence;
 
+/// <inheritdoc cref="IUserRepository"/>
 public class UserRepository : IUserRepository
 {
     private static readonly List<User> _users = [];

@@ -1,5 +1,8 @@
 namespace rendezvousBistro.Infrastructure.Authentication;
 
+/// <summary>
+/// Jwt settings
+/// </summary>
 public class JwtSettings
 {
     public const string SectionName = "JwtSettings";
